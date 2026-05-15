@@ -106,10 +106,21 @@ Leads admin page
 A read-only submissions inbox now exists at:
 - admin-panel/leads-admin.html
 
-It reads these collections directly from Appwrite without auth while testing:
+After Appwrite admin sign-in, it reads these collections directly from Appwrite:
 - ad-leads
 - feedback-contacts
 - tool-submissions
 - contact-messages
 
-Because this page depends on public read access, keep it only for testing or protect it before production. When ready, replace public read with proper admin authentication.
+Admin pages now require Appwrite authentication before rendering. Email/password and Google login are both available. You can keep public read during testing, but before production you should remove public read and give read access only to the admin users/team.
+
+
+Admin auth setup notes
+----------------------
+Auth is only loaded by files inside admin-panel/ and does not affect the public site.
+Make sure your Appwrite Auth setup includes:
+- Email/password auth enabled for your admin account.
+- Google OAuth enabled if you want the "Continue with Google" button to work.
+- Your deployed admin URLs added to Appwrite allowed platforms / OAuth redirect URLs, especially:
+  - /admin-panel/index.html
+  - /admin-panel/leads-admin.html
