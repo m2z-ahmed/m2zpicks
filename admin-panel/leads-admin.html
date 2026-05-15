@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads Admin | M2Z Picks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+  <style>
+    :root{--bg:#080d1a;--panel:#10182b;--panel2:#151f36;--border:#243755;--text:#eef4ff;--muted:#9fb0ce;--accent:#6d8dff;--accent2:#00d4aa;--warn:#f59e0b;--danger:#fb7185;--shadow:0 20px 60px rgba(0,0,0,.3)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% -10%,rgba(109,141,255,.2),transparent 34%),radial-gradient(circle at 85% 0,rgba(0,212,170,.12),transparent 30%),var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;min-height:100vh}a{color:inherit}.shell{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.side{position:sticky;top:0;height:100vh;background:rgba(10,16,32,.86);backdrop-filter:blur(18px);border-right:1px solid var(--border);padding:22px;overflow:auto}.brand{font-weight:900;font-size:20px;letter-spacing:-.04em;margin-bottom:4px}.brand small{display:block;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:0;margin-top:2px}.nav{display:grid;gap:8px;margin:24px 0}.nav a,.nav button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--muted);font:700 14px Inter;cursor:pointer;text-decoration:none;text-align:left}.nav a:hover,.nav button:hover,.nav .active{background:rgba(109,141,255,.12);border-color:rgba(109,141,255,.25);color:var(--text)}.side-note{color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--border);padding-top:16px}.main{padding:24px;overflow:hidden}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:22px}.eyebrow{color:var(--accent2);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}.top h1{font-size:clamp(28px,4vw,44px);margin:4px 0 8px;letter-spacing:-.05em}.top p{margin:0;color:var(--muted);max-width:760px;line-height:1.65}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.btn{border:0;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4e6df1);color:#fff;font-weight:800;padding:10px 14px;cursor:pointer;box-shadow:0 10px 28px rgba(109,141,255,.22)}.btn.secondary{background:var(--panel2);border:1px solid var(--border);box-shadow:none;color:var(--text)}.btn:disabled{opacity:.55;cursor:not-allowed}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}.metric{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:var(--shadow)}.metric small{display:block;color:var(--muted);font-weight:700}.metric strong{font-size:30px;display:block;margin-top:6px;letter-spacing:-.04em}.toolbar{display:grid;grid-template-columns:1fr 210px 210px;gap:10px;background:rgba(16,24,43,.86);border:1px solid var(--border);border-radius:18px;padding:12px;margin-bottom:16px;box-shadow:var(--shadow)}input,select{width:100%;background:#0b1325;border:1px solid var(--border);border-radius:12px;color:var(--text);padding:11px 12px;font:600 14px Inter;outline:none}input:focus,select:focus{border-color:rgba(109,141,255,.75);box-shadow:0 0 0 4px rgba(109,141,255,.12)}.status{min-height:22px;color:var(--muted);font-weight:700;margin:8px 2px}.status.error{color:var(--danger)}.board{display:grid;gap:12px}.lead-card{display:grid;grid-template-columns:1.25fr .95fr .9fr auto;gap:14px;align-items:center;background:rgba(16,24,43,.9);border:1px solid var(--border);border-radius:18px;padding:14px;box-shadow:var(--shadow)}.lead-card:hover{border-color:rgba(109,141,255,.45);transform:translateY(-1px);transition:.16s ease}.lead-title{display:flex;gap:10px;align-items:flex-start}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;border:1px solid rgba(255,255,255,.12);white-space:nowrap}.badge.advertisement{background:rgba(0,212,170,.1);color:#61f2cf}.badge.feedback{background:rgba(251,113,133,.1);color:#ffa3b1}.badge.tool{background:rgba(109,141,255,.12);color:#aebeff}.badge.contact{background:rgba(245,158,11,.12);color:#facc15}.primary{font-weight:900;font-size:15px}.secondary{color:var(--muted);font-size:13px;margin-top:3px;overflow-wrap:anywhere}.snippet{color:#c9d5f0;font-size:13px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.date{color:var(--muted);font-size:12px;font-weight:700}.empty{background:rgba(16,24,43,.9);border:1px dashed var(--border);border-radius:18px;padding:32px;text-align:center;color:var(--muted)}.drawer{position:fixed;inset:0;display:none;z-index:40}.drawer.open{display:block}.scrim{position:absolute;inset:0;background:rgba(0,0,0,.58)}.panel{position:absolute;right:0;top:0;height:100%;width:min(680px,100%);background:#0c1426;border-left:1px solid var(--border);box-shadow:var(--shadow);padding:24px;overflow:auto}.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px}.panel h2{margin:8px 0 0;letter-spacing:-.04em}.detail-grid{display:grid;grid-template-columns:170px 1fr;gap:10px;border-top:1px solid var(--border);padding-top:14px}.detail-grid dt{color:var(--muted);font-weight:800}.detail-grid dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.close{background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:8px 10px;cursor:pointer}.mobile-menu{display:none}@media(max-width:980px){.shell{grid-template-columns:1fr}.side{display:none}.mobile-menu{display:inline-flex}.cards{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr}.lead-card{grid-template-columns:1fr}.actions{justify-content:flex-start}}@media(max-width:560px){.main{padding:16px}.cards{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.top{display:block}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">M2Z Picks <small>Leads Admin</small></div>
+      <nav class="nav" aria-label="Admin navigation">
+        <a href="./index.html">🏠 Main Admin</a>
+        <a class="active" href="./leads-admin.html">📥 Form Submissions</a>
+        <a href="../contact.html" target="_blank" rel="noopener noreferrer">📝 Public Contact Form</a>
+        <a href="../index.html" target="_blank" rel="noopener noreferrer">↗ View Site</a>
+      </nav>
+      <p class="side-note">This page reads public Appwrite collections directly. No auth is used because you enabled read permission for Any during testing.</p>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div>
+          <div class="eyebrow">Admin Inbox</div>
+          <h1>Form submissions</h1>
+          <p>Review advertisement leads, feedback, tool listing requests, and general contact messages in one professional inbox.</p>
+        </div>
+        <div class="actions">
+          <a class="btn secondary mobile-menu" href="./index.html">Main Admin</a>
+          <button class="btn secondary" id="exportBtn" type="button">Export CSV</button>
+          <button class="btn" id="refreshBtn" type="button">Refresh</button>
+        </div>
+      </header>
+
+      <section class="cards" aria-label="Submission metrics">
+        <div class="metric"><small>Total submissions</small><strong id="mTotal">0</strong></div>
+        <div class="metric"><small>Ad leads</small><strong id="mAds">0</strong></div>
+        <div class="metric"><small>Tool requests</small><strong id="mTools">0</strong></div>
+        <div class="metric"><small>Feedback + contact</small><strong id="mOther">0</strong></div>
+      </section>
+
+      <section class="toolbar" aria-label="Filters">
+        <input id="searchInput" type="search" placeholder="Search name, email, company, tool, message…" autocomplete="off">
+        <select id="typeFilter" aria-label="Submission type">
+          <option value="all">All submission types</option>
+          <option value="advertisement">Advertisement leads</option>
+          <option value="tool">Tool submissions</option>
+          <option value="feedback">Feedback / complaints</option>
+          <option value="contact">Basic contact</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort submissions">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="name">Name A–Z</option>
+          <option value="type">Type A–Z</option>
+        </select>
+      </section>
+
+      <p class="status" id="statusText">Loading submissions…</p>
+      <section class="board" id="leadsBoard" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div class="drawer" id="detailDrawer" aria-hidden="true">
+    <div class="scrim" id="drawerScrim"></div>
+    <article class="panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="panel-head">
+        <div>
+          <span class="badge" id="drawerBadge">Submission</span>
+          <h2 id="drawerTitle">Submission detail</h2>
+          <p class="secondary" id="drawerSubtitle"></p>
+        </div>
+        <button class="close" id="closeDrawer" type="button">Close</button>
+      </div>
+      <dl class="detail-grid" id="detailGrid"></dl>
+    </article>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@16/dist/iife/sdk.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const ENDPOINT = 'https://sfo.cloud.appwrite.io/v1';
+      const PROJECT_ID = 'm2zpicks';
+      const DATABASE_ID = 'm2zpicks-db';
+      const COLLECTIONS = [
+        { id: 'ad-leads', type: 'advertisement', label: 'Advertisement', icon: '💰', fields: {
+          title: 'companyBrandName', subtitle: 'workEmail', summary: 'promotionDetails', url: 'websiteUrl'
+        } },
+        { id: 'tool-submissions', type: 'tool', label: 'Tool Request', icon: '🧰', fields: {
+          title: 'toolName', subtitle: 'email', summary: 'toolDescription', url: 'websiteUrl'
+        } },
+        { id: 'feedback-contacts', type: 'feedback', label: 'Feedback', icon: '💬', fields: {
+          title: 'feedbackType', subtitle: 'email', summary: 'message'
+        } },
+        { id: 'contact-messages', type: 'contact', label: 'Contact', icon: '✉️', fields: {
+          title: 'subject', subtitle: 'email', summary: 'message'
+        } }
+      ];
+
+      const $ = (id) => document.getElementById(id);
+      const state = { leads: [], errors: [] };
+      const client = new Appwrite.Client().setEndpoint(ENDPOINT).setProject(PROJECT_ID);
+      const db = new Appwrite.Databases(client);
+      const Query = Appwrite.Query;
+
+      const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+      const compact = (value) => String(value || '').trim();
+      const formatDate = (value) => value ? new Intl.DateTimeFormat(undefined, {
+        dateStyle: 'medium', timeStyle: 'short'
+      }).format(new Date(value)) : 'No date';
+      const collectionFor = (type) => COLLECTIONS.find((c) => c.type === type) || COLLECTIONS[0];
+
+      function normalize(doc, collection) {
+        const get = (key) => compact(doc[key]);
+        const title = get(collection.fields.title) || get('companyBrandName') || get('fullName') || 'Untitled submission';
+        const subtitle = get(collection.fields.subtitle) || get('workEmail') || get('email') || 'No email';
+        const summary = get(collection.fields.summary) || get('targetAudienceGoal') || 'No message provided.';
+        const searchable = Object.values(doc).filter((v) => ['string', 'number', 'boolean'].includes(typeof v)).join(' ').toLowerCase();
+
+        return {
+          ...doc,
+          _type: collection.type,
+          _label: collection.label,
+          _icon: collection.icon,
+          _title: title,
+          _subtitle: subtitle,
+          _summary: summary,
+          _url: collection.fields.url ? get(collection.fields.url) : '',
+          _created: doc.$createdAt || doc.$updatedAt || '',
+          _search: `${collection.type} ${collection.label} ${searchable}`.toLowerCase()
+        };
+      }
+
+      async function fetchCollection(collection) {
+        const all = [];
+        let offset = 0;
+        while (true) {
+          const res = await db.listDocuments(DATABASE_ID, collection.id, [
+            Query.limit(100),
+            Query.offset(offset),
+            Query.orderDesc('$createdAt')
+          ]);
+          all.push(...(res.documents || []).map((doc) => normalize(doc, collection)));
+          offset += res.documents?.length || 0;
+          if (!res.documents?.length || offset >= res.total) break;
+        }
+        return all;
+      }
+
+      async function loadLeads() {
+        $('refreshBtn').disabled = true;
+        $('statusText').className = 'status';
+        $('statusText').textContent = 'Loading submissions…';
+        state.errors = [];
+
+        const batches = await Promise.all(COLLECTIONS.map(async (collection) => {
+          try {
+            return await fetchCollection(collection);
+          } catch (err) {
+            state.errors.push(`${collection.label}: ${err.message || err}`);
+            return [];
+          }
+        }));
+
+        state.leads = batches.flat();
+        render();
+        $('refreshBtn').disabled = false;
+      }
+
+      function filteredLeads() {
+        const q = compact($('searchInput').value).toLowerCase();
+        const type = $('typeFilter').value;
+        const sort = $('sortSelect').value;
+        const leads = state.leads.filter((lead) => {
+          const typeMatch = type === 'all' || lead._type === type;
+          const searchMatch = !q || lead._search.includes(q);
+          return typeMatch && searchMatch;
+        });
+
+        leads.sort((a, b) => {
+          if (sort === 'oldest') return new Date(a._created || 0) - new Date(b._created || 0);
+          if (sort === 'name') return a._title.localeCompare(b._title);
+          if (sort === 'type') return a._label.localeCompare(b._label) || a._title.localeCompare(b._title);
+          return new Date(b._created || 0) - new Date(a._created || 0);
+        });
+
+        return leads;
+      }
+
+      function renderMetrics() {
+        $('mTotal').textContent = state.leads.length;
+        $('mAds').textContent = state.leads.filter((lead) => lead._type === 'advertisement').length;
+        $('mTools').textContent = state.leads.filter((lead) => lead._type === 'tool').length;
+        $('mOther').textContent = state.leads.filter((lead) => ['feedback', 'contact'].includes(lead._type)).length;
+      }
+
+      function render() {
+        renderMetrics();
+        const leads = filteredLeads();
+        const statusParts = [`Showing ${leads.length} of ${state.leads.length} submissions`];
+        if (state.errors.length) statusParts.push(`Could not load: ${state.errors.join(' | ')}`);
+        $('statusText').textContent = statusParts.join('. ');
+        $('statusText').className = `status ${state.errors.length ? 'error' : ''}`.trim();
+
+        if (!leads.length) {
+          $('leadsBoard').innerHTML = '<div class="empty"><strong>No submissions found.</strong><br>Try a different filter or refresh after Appwrite collections are created.</div>';
+          return;
+        }
+
+        $('leadsBoard').innerHTML = leads.map((lead) => `
+          <article class="lead-card">
+            <div class="lead-title">
+              <span class="badge ${lead._type}">${lead._icon} ${escapeHtml(lead._label)}</span>
+              <div>
+                <div class="primary">${escapeHtml(lead._title)}</div>
+                <div class="secondary">${escapeHtml(lead.fullName || 'No name')} · ${escapeHtml(lead._subtitle)}</div>
+              </div>
+            </div>
+            <div class="snippet">${escapeHtml(lead._summary)}</div>
+            <div>
+              <div class="date">${escapeHtml(formatDate(lead._created))}</div>
+              ${lead._url ? `<a class="secondary" href="${escapeHtml(lead._url)}" target="_blank" rel="noopener noreferrer">Open website ↗</a>` : '<span class="secondary">No website</span>'}
+            </div>
+            <button class="btn secondary" type="button" data-id="${escapeHtml(lead.$id)}" data-type="${escapeHtml(lead._type)}">View</button>
+          </article>
+        `).join('');
+
+        document.querySelectorAll('[data-id][data-type]').forEach((button) => {
+          button.addEventListener('click', () => openDetail(button.dataset.id, button.dataset.type));
+        });
+      }
+
+      function detailEntries(lead) {
+        const hidden = new Set(['$permissions', '_search', '_icon', '_label', '_type', '_title', '_subtitle', '_summary', '_url', '_created']);
+        const preferred = ['fullName', 'workEmail', 'email', 'companyBrandName', 'websiteUrl', 'toolName', 'subject', 'feedbackType', 'promotionType', 'budgetRange', 'promotionDetails', 'targetAudienceGoal', 'toolDescription', 'message', '$createdAt', '$updatedAt', '$id'];
+        const keys = [...new Set([...preferred, ...Object.keys(lead)])].filter((key) => !hidden.has(key) && lead[key] !== undefined && lead[key] !== null && String(lead[key]).trim() !== '');
+        return keys.map((key) => [key, lead[key]]);
+      }
+
+      function openDetail(id, type) {
+        const lead = state.leads.find((item) => item.$id === id && item._type === type);
+        if (!lead) return;
+        const collection = collectionFor(type);
+        $('drawerBadge').className = `badge ${type}`;
+        $('drawerBadge').textContent = `${collection.icon} ${collection.label}`;
+        $('drawerTitle').textContent = lead._title;
+        $('drawerSubtitle').textContent = `${lead.fullName || 'No name'} · ${lead._subtitle}`;
+        $('detailGrid').innerHTML = detailEntries(lead).map(([key, value]) => `
+          <dt>${escapeHtml(key)}</dt>
+          <dd>${escapeHtml(key.includes('At') ? formatDate(value) : value)}</dd>
+        `).join('');
+        $('detailDrawer').classList.add('open');
+        $('detailDrawer').setAttribute('aria-hidden', 'false');
+      }
+
+      function closeDetail() {
+        $('detailDrawer').classList.remove('open');
+        $('detailDrawer').setAttribute('aria-hidden', 'true');
+      }
+
+      function exportCsv() {
+        const leads = filteredLeads();
+        if (!leads.length) return;
+        const columns = ['type', 'createdAt', 'fullName', 'email', 'workEmail', 'companyBrandName', 'websiteUrl', 'toolName', 'subject', 'feedbackType', 'promotionType', 'budgetRange', 'summary'];
+        const rows = leads.map((lead) => ({
+          type: lead._label,
+          createdAt: lead._created,
+          fullName: lead.fullName || '',
+          email: lead.email || '',
+          workEmail: lead.workEmail || '',
+          companyBrandName: lead.companyBrandName || '',
+          websiteUrl: lead.websiteUrl || '',
+          toolName: lead.toolName || '',
+          subject: lead.subject || '',
+          feedbackType: lead.feedbackType || '',
+          promotionType: lead.promotionType || '',
+          budgetRange: lead.budgetRange || '',
+          summary: lead._summary || ''
+        }));
+        const csv = [columns.join(','), ...rows.map((row) => columns.map((col) => `"${String(row[col] || '').replace(/"/g, '""')}"`).join(','))].join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `m2zpicks-submissions-${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      $('refreshBtn').addEventListener('click', loadLeads);
+      $('exportBtn').addEventListener('click', exportCsv);
+      $('searchInput').addEventListener('input', render);
+      $('typeFilter').addEventListener('change', render);
+      $('sortSelect').addEventListener('change', render);
+      $('closeDrawer').addEventListener('click', closeDetail);
+      $('drawerScrim').addEventListener('click', closeDetail);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeDetail();
+      });
+
+      loadLeads();
+    })();
+  </script>
+</body>
+</html>
