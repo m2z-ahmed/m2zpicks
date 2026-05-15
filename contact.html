@@ -88,8 +88,8 @@
     <section class="container section contact-form-section" id="contactFormSection">
       <div class="contact-form-intro">
         <span class="eyebrow">Contact M2ZPicks</span>
-        <h2>Tell us what you need</h2>
-        <p id="formIntroText">Advertise your AI product to founders, builders & AI enthusiasts. Tell us about your campaign and we’ll get back within 24–48 hours.</p>
+        <h2>What do you need help with?</h2>
+        <p id="formIntroText">Advertise your AI product to founders, builders & AI enthusiasts. Share the basics and we’ll get back within 24–48 hours.</p>
       </div>
 
       <form class="contact-goal-form" id="contactGoalForm">
@@ -114,23 +114,19 @@
           <label class="ad-field tool-field">Website URL*
             <input type="url" name="websiteUrl" placeholder="https://example.com" data-required-for="advertisement tool">
           </label>
-          <label class="ad-field">Role / Position
-            <input type="text" name="rolePosition" placeholder="Founder, Marketing Lead, Growth Manager">
-          </label>
         </div>
 
-        <div class="goal-panel ad-field" data-panel="advertisement">
-          <h3>Ad requirement details</h3>
+        <div class="goal-panel ad-field">
+          <h3>Ad details</h3>
           <label>What would you like to promote?*
             <textarea name="promotionDetails" rows="3" placeholder="AI coding assistant for startups" data-required-for="advertisement"></textarea>
           </label>
           <div class="form-grid two-col">
-            <label>Type of promotion wanted*
+            <label>Promotion type*
               <select name="promotionType" data-required-for="advertisement">
                 <option value="">Select a promotion type</option>
                 <option>Featured Listing</option>
                 <option>Homepage Banner</option>
-                <option>Newsletter Sponsorship</option>
                 <option>Sponsored Tool Placement</option>
                 <option>Social Media Promotion</option>
                 <option>Custom Partnership</option>
@@ -151,45 +147,9 @@
           <label>Target audience / goal*
             <textarea name="targetAudienceGoal" rows="3" placeholder="More signups, traffic, awareness, investors, app installs etc." data-required-for="advertisement"></textarea>
           </label>
-          <div class="form-grid two-col">
-            <label>Preferred Start Date
-              <input type="date" name="preferredStartDate">
-            </label>
-            <label>Campaign Duration
-              <select name="campaignDuration">
-                <option value="">Select duration</option>
-                <option>1 week</option>
-                <option>2 weeks</option>
-                <option>1 month</option>
-                <option>Ongoing</option>
-                <option>Flexible</option>
-              </select>
-            </label>
-            <label>Target Geography
-              <select name="targetGeography">
-                <option value="">Select geography</option>
-                <option>Global</option>
-                <option>US</option>
-                <option>India</option>
-                <option>Europe</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label>Do you already have ad creatives ready?*
-              <select name="hasCreatives" data-required-for="advertisement">
-                <option value="">Select one</option>
-                <option>Yes</option>
-                <option>No</option>
-                <option>Need help</option>
-              </select>
-            </label>
-          </div>
-          <label>Upload Media / Asset Link (optional)
-            <input type="url" name="mediaUrl" placeholder="Paste a Drive, Dropbox, or public asset URL">
-          </label>
         </div>
 
-        <div class="goal-panel feedback-field hidden" data-panel="feedback">
+        <div class="goal-panel feedback-field hidden">
           <h3>Feedback / complaint</h3>
           <label>Feedback type*
             <select name="feedbackType" data-required-for="feedback">
@@ -202,50 +162,33 @@
               <option>Other</option>
             </select>
           </label>
-          <label>What happened?*
+          <label>Message*
             <textarea name="feedbackMessage" rows="5" placeholder="Tell us what we should improve or fix." data-required-for="feedback"></textarea>
           </label>
         </div>
 
-        <div class="goal-panel tool-field hidden" data-panel="tool">
+        <div class="goal-panel tool-field hidden">
           <h3>Tool suggestion / directory listing</h3>
           <div class="form-grid two-col">
             <label>Tool Name*
               <input type="text" name="toolName" data-required-for="tool">
             </label>
-            <label>Tool Category
-              <input type="text" name="toolCategory" placeholder="AI writing, coding, image generation…">
+            <label>Tool Category*
+              <input type="text" name="toolCategory" placeholder="AI writing, coding, image generation…" data-required-for="tool">
             </label>
           </div>
-          <label>Why should we list it?*
+          <label>Tool description / why should we list it?*
             <textarea name="toolDescription" rows="4" placeholder="Describe the tool, who it helps, pricing, and what makes it useful." data-required-for="tool"></textarea>
           </label>
         </div>
 
-        <div class="goal-panel contact-field hidden" data-panel="contact">
+        <div class="goal-panel contact-field hidden">
           <h3>Basic / other contact</h3>
           <label>Subject*
             <input type="text" name="subject" data-required-for="contact">
           </label>
           <label>Message*
             <textarea name="message" rows="5" data-required-for="contact"></textarea>
-          </label>
-        </div>
-
-        <div class="form-grid two-col">
-          <label>How did you hear about us?
-            <select name="heardFrom">
-              <option value="">Select one</option>
-              <option>Google</option>
-              <option>X/Twitter</option>
-              <option>LinkedIn</option>
-              <option>Friend</option>
-              <option>Newsletter</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>Anything else you'd like us to know?
-            <textarea name="additionalInfo" rows="3"></textarea>
           </label>
         </div>
 
@@ -361,24 +304,64 @@
       const status = document.getElementById('contactFormStatus');
       const submitBtn = document.getElementById('contactSubmitBtn');
       const goalIntros = {
-        advertisement: 'Advertise your AI product to founders, builders & AI enthusiasts. Tell us about your campaign and we’ll get back within 24–48 hours.',
-        feedback: 'Send feedback, complaints, bug reports, or corrections so we can improve M2ZPicks faster.',
-        tool: 'Suggest an AI tool for the directory. Share what it does, who it helps, and why it should be listed.',
-        contact: 'For partnerships, questions, press, or anything else, send a quick message and we’ll reply as soon as possible.'
+        advertisement: 'Advertise your AI product to founders, builders & AI enthusiasts. Share the basics and we’ll get back within 24–48 hours.',
+        feedback: 'Report a bug, complaint, wrong info, broken link, or general feedback.',
+        tool: 'Suggest an AI tool for the directory. Share the core details we need to review it.',
+        contact: 'For partnerships, questions, press, or anything else, send a short message.'
       };
-
       const submitters = {
         advertisement: 'submitAdLead',
         feedback: 'submitFeedbackContact',
         tool: 'submitToolSubmission',
         contact: 'submitContactMessage'
       };
-
-      const value = (data, key) => String(data.get(key) || '').trim();
-      const detailLine = (label, data, key) => {
-        const fieldValue = value(data, key);
-        return fieldValue ? `${label}: ${fieldValue}` : '';
+      const goalClasses = {
+        advertisement: 'ad-field',
+        feedback: 'feedback-field',
+        tool: 'tool-field',
+        contact: 'contact-field'
       };
+      const builders = {
+        advertisement: (data) => ({
+          fullName: value(data, 'fullName'),
+          workEmail: value(data, 'email'),
+          companyBrandName: value(data, 'companyBrandName'),
+          websiteUrl: value(data, 'websiteUrl'),
+          promotionDetails: value(data, 'promotionDetails'),
+          promotionType: value(data, 'promotionType'),
+          targetAudienceGoal: value(data, 'targetAudienceGoal'),
+          budgetRange: value(data, 'budgetRange'),
+          consent: Boolean(data.get('consent'))
+        }),
+        feedback: (data) => ({
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          feedbackType: value(data, 'feedbackType'),
+          message: value(data, 'feedbackMessage'),
+          consent: Boolean(data.get('consent'))
+        }),
+        tool: (data) => ({
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          companyBrandName: value(data, 'companyBrandName'),
+          websiteUrl: value(data, 'websiteUrl'),
+          toolName: value(data, 'toolName'),
+          toolCategory: value(data, 'toolCategory'),
+          toolDescription: value(data, 'toolDescription'),
+          consent: Boolean(data.get('consent'))
+        }),
+        contact: (data) => ({
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          subject: value(data, 'subject'),
+          message: value(data, 'message'),
+          consent: Boolean(data.get('consent'))
+        })
+      };
+
+      function value(data, key) {
+        return String(data.get(key) || '').trim();
+      }
 
       function setStatus(message, type = '') {
         status.textContent = message;
@@ -387,96 +370,16 @@
 
       function updateGoal() {
         const goal = goalSelect.value;
-        const goalClass = {
-          advertisement: 'ad-field',
-          feedback: 'feedback-field',
-          tool: 'tool-field',
-          contact: 'contact-field'
-        }[goal];
-
+        const activeClass = goalClasses[goal] || goalClasses.contact;
         introText.textContent = goalIntros[goal] || goalIntros.contact;
+
         form.querySelectorAll('.ad-field, .feedback-field, .tool-field, .contact-field').forEach((fieldGroup) => {
-          fieldGroup.classList.toggle('hidden', !fieldGroup.classList.contains(goalClass));
+          fieldGroup.classList.toggle('hidden', !fieldGroup.classList.contains(activeClass));
         });
         form.querySelectorAll('[data-required-for]').forEach((field) => {
-          const goals = String(field.dataset.requiredFor || '').split(' ');
-          field.required = goals.includes(goal);
+          field.required = String(field.dataset.requiredFor || '').split(' ').includes(goal);
         });
       }
-
-      function buildAdLeadPayload(data) {
-        const extraDetails = [
-          value(data, 'promotionDetails'),
-          detailLine('Role / Position', data, 'rolePosition'),
-          detailLine('Budget Range', data, 'budgetRange'),
-          detailLine('Preferred Start Date', data, 'preferredStartDate'),
-          detailLine('Campaign Duration', data, 'campaignDuration'),
-          detailLine('Target Geography', data, 'targetGeography'),
-          detailLine('Creatives Ready', data, 'hasCreatives'),
-          detailLine('Asset Link', data, 'mediaUrl'),
-          detailLine('Heard From', data, 'heardFrom'),
-          detailLine('Additional Info', data, 'additionalInfo'),
-          data.get('consent') ? 'Consent: Yes' : ''
-        ].filter(Boolean).join('\n');
-
-        return {
-          fullName: value(data, 'fullName'),
-          workEmail: value(data, 'email'),
-          companyBrandName: value(data, 'companyBrandName'),
-          websiteUrl: value(data, 'websiteUrl'),
-          promotionDetails: extraDetails,
-          promotionType: value(data, 'promotionType'),
-          targetAudienceGoal: value(data, 'targetAudienceGoal')
-        };
-      }
-
-      function buildFeedbackPayload(data) {
-        return {
-          fullName: value(data, 'fullName'),
-          email: value(data, 'email'),
-          feedbackType: value(data, 'feedbackType'),
-          message: value(data, 'feedbackMessage'),
-          sourceUrl: location.href,
-          heardFrom: value(data, 'heardFrom'),
-          additionalInfo: value(data, 'additionalInfo'),
-          consent: Boolean(data.get('consent'))
-        };
-      }
-
-      function buildToolPayload(data) {
-        return {
-          fullName: value(data, 'fullName'),
-          email: value(data, 'email'),
-          companyBrandName: value(data, 'companyBrandName'),
-          websiteUrl: value(data, 'websiteUrl'),
-          toolName: value(data, 'toolName'),
-          toolCategory: value(data, 'toolCategory'),
-          toolDescription: value(data, 'toolDescription'),
-          heardFrom: value(data, 'heardFrom'),
-          additionalInfo: value(data, 'additionalInfo'),
-          consent: Boolean(data.get('consent'))
-        };
-      }
-
-      function buildContactPayload(data) {
-        return {
-          fullName: value(data, 'fullName'),
-          email: value(data, 'email'),
-          subject: value(data, 'subject'),
-          message: value(data, 'message'),
-          sourceUrl: location.href,
-          heardFrom: value(data, 'heardFrom'),
-          additionalInfo: value(data, 'additionalInfo'),
-          consent: Boolean(data.get('consent'))
-        };
-      }
-
-      const builders = {
-        advertisement: buildAdLeadPayload,
-        feedback: buildFeedbackPayload,
-        tool: buildToolPayload,
-        contact: buildContactPayload
-      };
 
       goalSelect.addEventListener('change', updateGoal);
       updateGoal();
@@ -487,8 +390,7 @@
 
         const data = new FormData(form);
         const goal = value(data, 'goal') || 'contact';
-        const submitterName = submitters[goal];
-        const submitter = window.AppwriteLayer?.[submitterName];
+        const submitter = window.AppwriteLayer?.[submitters[goal]];
 
         if (!submitter) {
           setStatus('Form service is still loading. Please try again in a moment.', 'error');
@@ -517,6 +419,7 @@
       });
     })();
   </script>
+
 
 
   <script>(function(s){s.dataset.zone='10938386',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>

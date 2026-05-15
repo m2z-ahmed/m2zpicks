@@ -1,99 +1,87 @@
-M2ZPicks operational notes
-==========================
+M2ZPicks Appwrite TODO
+======================
 
-Contact form / Appwrite collections
------------------------------------
-The contact page now supports four form goals:
-1. Advertisement / Sponsorship
-2. Feedback / Complaint
-3. Suggest or list a tool
-4. Basic / Other contact
+Goal
+----
+Keep the public contact page simple. The form now only asks for useful fields and submits to one collection based on the selected goal.
 
-Existing collection: ad-leads
------------------------------
+Important Appwrite rule
+-----------------------
+For each collection below, allow public/guest users to CREATE documents only. Do not allow public READ, UPDATE, or DELETE access.
+
+1) Existing collection: ad-leads
+--------------------------------
+Collection name: Ad Leads
 Collection ID: ad-leads
-Purpose: Stores advertisement and sponsorship leads.
+Purpose: Advertisement and sponsorship requests.
 
-You already created these columns:
-- fullName
-- workEmail
-- companyBrandName
-- websiteUrl
-- promotionDetails
-- promotionType
-- targetAudienceGoal
+Keep these existing columns:
+- fullName                 string, required
+- workEmail                email or string, required
+- companyBrandName         string, required
+- websiteUrl               url or string, required
+- promotionDetails         string, required, long text/textarea
+- promotionType            string, required
+- targetAudienceGoal       string, required, long text/textarea
 
-Keep those column names. Do not rename them unless the website code is updated too.
+Add only these useful columns:
+- budgetRange              string, required
+- consent                  boolean, required
 
-Recommended columns to ADD to ad-leads later:
-- budgetRange              string, required recommended
-- rolePosition             string, optional
-- preferredStartDate       string or datetime, optional
-- campaignDuration         string, optional
-- targetGeography          string, optional
-- hasCreatives             string, required recommended; values: Yes, No, Need help
-- mediaUrl                 string, optional
-- heardFrom                string, optional
-- additionalInfo           string, optional
-- consent                  boolean, required recommended
-- sourceUrl                string, optional
-- status                   string, optional; default idea: new
+Remove/skip these older suggested ad columns for now because the simplified form no longer sends them:
+- rolePosition
+- preferredStartDate
+- campaignDuration
+- targetGeography
+- hasCreatives
+- mediaUrl
+- heardFrom
+- additionalInfo
+- sourceUrl
+- status
 
-Current code note: until the extra ad-leads columns above are created, the site stores the extra ad details inside promotionDetails so submissions still work with your current 7-column table.
-
-New collection #1: feedback-contacts
+2) New collection: feedback-contacts
 ------------------------------------
 Collection name: Feedback Contacts
 Collection ID: feedback-contacts
-Purpose: Stores feedback, complaints, bug reports, incorrect info reports, and broken link reports.
+Purpose: Feedback, complaints, bugs, wrong info, and broken link reports.
 
-Columns to create:
+Create these columns only:
 - fullName                 string, required
 - email                    email or string, required
-- feedbackType             string, required; options: General Feedback, Complaint, Bug Report, Incorrect Tool Info, Broken Link, Other
-- message                  string, required; textarea/long string
-- sourceUrl                string, optional
-- heardFrom                string, optional
-- additionalInfo           string, optional
+- feedbackType             string, required
+- message                  string, required, long text/textarea
 - consent                  boolean, required
-- status                   string, optional; default idea: new
 
-New collection #2: tool-submissions
+3) New collection: tool-submissions
 -----------------------------------
 Collection name: Tool Submissions
 Collection ID: tool-submissions
-Purpose: Stores AI tool suggestions and directory listing requests.
+Purpose: AI tool suggestions and directory listing requests.
 
-Columns to create:
+Create these columns only:
 - fullName                 string, required
 - email                    email or string, required
 - companyBrandName         string, required
 - websiteUrl               url or string, required
 - toolName                 string, required
-- toolCategory             string, optional
-- toolDescription          string, required; textarea/long string
-- heardFrom                string, optional
-- additionalInfo           string, optional
+- toolCategory             string, required
+- toolDescription          string, required, long text/textarea
 - consent                  boolean, required
-- status                   string, optional; default idea: new
 
-New collection #3: contact-messages
+4) New collection: contact-messages
 -----------------------------------
 Collection name: Contact Messages
 Collection ID: contact-messages
-Purpose: Stores general/basic contact requests that do not fit ads, feedback, or tool submissions.
+Purpose: Basic/general contact requests.
 
-Columns to create:
+Create these columns only:
 - fullName                 string, required
 - email                    email or string, required
 - subject                  string, required
-- message                  string, required; textarea/long string
-- sourceUrl                string, optional
-- heardFrom                string, optional
-- additionalInfo           string, optional
+- message                  string, required, long text/textarea
 - consent                  boolean, required
-- status                   string, optional; default idea: new
 
-Permissions reminder
---------------------
-For each collection that should accept public website submissions, configure Appwrite permissions so unauthenticated visitors can create documents, but cannot read/update/delete other submissions.
+Current website payloads
+------------------------
+The website submits exactly the column names above. If you rename any column in Appwrite, update contact.html too.
