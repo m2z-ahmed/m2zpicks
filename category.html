@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Category Tools | M2ZPicks</title>
+  <meta name="description" content="Browse AI tools in a specific category." />
+  <link rel="canonical" href="https://m2zpicks.netlify.app/category.html" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <meta name="google-adsense-account" content="ca-pub-6875637223271831">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .category-hero{padding:34px 0 20px}.category-hero h1{font-size:clamp(30px,4vw,48px);line-height:1.1}.category-hero p{color:var(--tx2)}
+    .category-controls{display:flex;gap:10px;flex-wrap:wrap;background:var(--bg-card);border:1px solid var(--bd);padding:12px;border-radius:12px;margin-bottom:20px}
+    .category-controls input,.category-controls select{background:var(--bg-1);border:1px solid var(--bd);color:var(--tx);padding:10px 12px;border-radius:10px}
+    .category-controls input{min-width:240px;flex:1}
+  </style>
+</head>
+<body data-page="category">
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <header class="site-header"><div class="container nav-wrap"><a href="index.html" class="logo" aria-label="M2ZPicks Home"><span class="logo-mark">✦</span><span class="logo-text">M2ZPicks</span></a><nav class="main-nav" id="mainNav" aria-label="Main Navigation"><a href="index.html">Home</a><a href="list.html">Browse Tools</a><a href="creators.html">Creator Picks</a><a href="rankings.html">AI Rankings</a><a href="blogs/index.html">Blogs</a></nav><div class="nav-actions"><a href="list.html" class="btn btn-nav">Start Exploring</a><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button></div></div></header>
+
+  <main class="container section">
+    <a href="list.html" class="text-link">← Back to Browse Tools</a>
+    <section class="category-hero"><h1 id="categoryTitle">Category Tools</h1><p id="categoryCount">Loading tools...</p></section>
+
+    <section class="category-controls" aria-label="Category tools controls">
+      <input id="categorySearch" type="search" placeholder="Search in this category..." autocomplete="off" />
+      <select id="categorySort"><option value="title-asc">Sort: Title A–Z</option><option value="title-desc">Sort: Title Z–A</option><option value="id-asc">Sort: Oldest First</option><option value="id-desc">Sort: Newest First</option></select>
+      <label class="favorites-only" style="display:inline-flex;align-items:center;gap:8px;"><input id="categoryFavOnly" type="checkbox" /> <span>⭐ Favorites only</span></label>
+    </section>
+
+    <section>
+      <div class="grid" id="categoryGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="categoryEmpty"><h2>No tools found</h2><p>Try different search terms or remove the favorites-only filter.</p></div>
+      <div class="load-more-wrap"><div id="categoryLoader" class="infinite-loader hidden">Loading more tools…</div></div>
+      <div id="categorySentinel" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> M2ZPicks</p><nav aria-label="Footer links"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></nav></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@16/dist/iife/sdk.js"></script>
+  <script src="appwrite.js"></script>
+  <script src="script.js?v=20260511"></script>
+  <script src="gift.js?v=20260314"></script>
+</body>
+</html>
