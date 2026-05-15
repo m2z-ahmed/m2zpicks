@@ -1,0 +1,99 @@
+M2ZPicks operational notes
+==========================
+
+Contact form / Appwrite collections
+-----------------------------------
+The contact page now supports four form goals:
+1. Advertisement / Sponsorship
+2. Feedback / Complaint
+3. Suggest or list a tool
+4. Basic / Other contact
+
+Existing collection: ad-leads
+-----------------------------
+Collection ID: ad-leads
+Purpose: Stores advertisement and sponsorship leads.
+
+You already created these columns:
+- fullName
+- workEmail
+- companyBrandName
+- websiteUrl
+- promotionDetails
+- promotionType
+- targetAudienceGoal
+
+Keep those column names. Do not rename them unless the website code is updated too.
+
+Recommended columns to ADD to ad-leads later:
+- budgetRange              string, required recommended
+- rolePosition             string, optional
+- preferredStartDate       string or datetime, optional
+- campaignDuration         string, optional
+- targetGeography          string, optional
+- hasCreatives             string, required recommended; values: Yes, No, Need help
+- mediaUrl                 string, optional
+- heardFrom                string, optional
+- additionalInfo           string, optional
+- consent                  boolean, required recommended
+- sourceUrl                string, optional
+- status                   string, optional; default idea: new
+
+Current code note: until the extra ad-leads columns above are created, the site stores the extra ad details inside promotionDetails so submissions still work with your current 7-column table.
+
+New collection #1: feedback-contacts
+------------------------------------
+Collection name: Feedback Contacts
+Collection ID: feedback-contacts
+Purpose: Stores feedback, complaints, bug reports, incorrect info reports, and broken link reports.
+
+Columns to create:
+- fullName                 string, required
+- email                    email or string, required
+- feedbackType             string, required; options: General Feedback, Complaint, Bug Report, Incorrect Tool Info, Broken Link, Other
+- message                  string, required; textarea/long string
+- sourceUrl                string, optional
+- heardFrom                string, optional
+- additionalInfo           string, optional
+- consent                  boolean, required
+- status                   string, optional; default idea: new
+
+New collection #2: tool-submissions
+-----------------------------------
+Collection name: Tool Submissions
+Collection ID: tool-submissions
+Purpose: Stores AI tool suggestions and directory listing requests.
+
+Columns to create:
+- fullName                 string, required
+- email                    email or string, required
+- companyBrandName         string, required
+- websiteUrl               url or string, required
+- toolName                 string, required
+- toolCategory             string, optional
+- toolDescription          string, required; textarea/long string
+- heardFrom                string, optional
+- additionalInfo           string, optional
+- consent                  boolean, required
+- status                   string, optional; default idea: new
+
+New collection #3: contact-messages
+-----------------------------------
+Collection name: Contact Messages
+Collection ID: contact-messages
+Purpose: Stores general/basic contact requests that do not fit ads, feedback, or tool submissions.
+
+Columns to create:
+- fullName                 string, required
+- email                    email or string, required
+- subject                  string, required
+- message                  string, required; textarea/long string
+- sourceUrl                string, optional
+- heardFrom                string, optional
+- additionalInfo           string, optional
+- consent                  boolean, required
+- status                   string, optional; default idea: new
+
+Permissions reminder
+--------------------
+For each collection that should accept public website submissions, configure Appwrite permissions so unauthenticated visitors can create documents, but cannot read/update/delete other submissions.
