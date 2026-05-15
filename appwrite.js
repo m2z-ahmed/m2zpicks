@@ -5,10 +5,10 @@
   const ENDPOINT = 'https://sfo.cloud.appwrite.io/v1';
   const PROJECT_ID = 'm2zpicks';
   const DATABASE_ID = 'm2zpicks-db';
-  const COLLECTIONS = { tools: 'tools', ranks: 'ranks', creators: 'creators', blogs: 'blogs' };
+  const COLLECTIONS = { tools: 'tools', ranks: 'ranks', creators: 'creators', blogs: 'blogs', adLeads: 'ad-leads', feedbackContacts: 'feedback-contacts', toolSubmissions: 'tool-submissions', contactMessages: 'contact-messages' };
   const TTL_MS = 10 * 60 * 1000;
 
-  const { Client, Databases, Query } = window.Appwrite;
+  const { Client, Databases, Query, ID } = window.Appwrite;
   const client = new Client().setEndpoint(ENDPOINT).setProject(PROJECT_ID);
   const db = new Databases(client);
 
@@ -216,6 +216,27 @@
     return tools.filter((t) => idSet.has(Number(t.id)));
   }
 
+
+  async function createContactDocument(collectionId, payload) {
+    return db.createDocument(DATABASE_ID, collectionId, ID.unique(), payload);
+  }
+
+  async function submitAdLead(payload) {
+    return createContactDocument(COLLECTIONS.adLeads, payload);
+  }
+
+  async function submitFeedbackContact(payload) {
+    return createContactDocument(COLLECTIONS.feedbackContacts, payload);
+  }
+
+  async function submitToolSubmission(payload) {
+    return createContactDocument(COLLECTIONS.toolSubmissions, payload);
+  }
+
+  async function submitContactMessage(payload) {
+    return createContactDocument(COLLECTIONS.contactMessages, payload);
+  }
+
   async function getCreatorPickLookup() {
     const creators = await fetchAllCreators();
     const map = new Map();
@@ -239,6 +260,10 @@
     fetchFeaturedTools,
     fetchHomepageStats,
     fetchAllCreators,
+    submitAdLead,
+    submitFeedbackContact,
+    submitToolSubmission,
+    submitContactMessage,
     getCreatorPickLookup,
     fetchAllBlogs,
     fetchLatestBlogs,

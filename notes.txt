@@ -1,0 +1,126 @@
+M2ZPicks operational notes
+==========================
+
+Contact form / Appwrite collections
+-----------------------------------
+The contact page now uses a simplified multi-purpose form with only the useful fields.
+
+Form goals:
+1. Advertisement / Sponsorship
+2. Feedback / Complaint
+3. Suggest or list a tool
+4. Basic / Other contact
+
+What you need to do in Appwrite
+-------------------------------
+Create the 3 new collections below and add 1 extra column to your existing ad-leads collection.
+For public website submissions, allow guests/any users to CREATE documents only. Do not allow public read, update, or delete.
+
+Existing collection: ad-leads
+-----------------------------
+Collection name: Ad Leads
+Collection ID: ad-leads
+Purpose: Stores advertisement and sponsorship leads.
+
+Keep these existing columns:
+- fullName                string, required
+- workEmail               email or string, required
+- companyBrandName        string, required
+- websiteUrl              url or string, required
+- promotionDetails        string, required; textarea/long string
+- promotionType           string, required
+- targetAudienceGoal      string, required; textarea/long string
+
+Add this one useful column:
+- budgetRange             string, required
+
+Recommended promotionType values:
+- Featured Listing
+- Homepage Banner
+- Sponsored Tool Placement
+- Social Media Promotion
+- Custom Partnership
+- Not Sure Yet
+
+Recommended budgetRange values:
+- <$50
+- $50–$100
+- $100–$300
+- $300–$1000
+- $1000+
+
+New collection #1: feedback-contacts
+------------------------------------
+Collection name: Feedback Contacts
+Collection ID: feedback-contacts
+Purpose: Stores feedback, complaints, bugs, incorrect info reports, and broken link reports.
+
+Columns to create:
+- fullName                string, required
+- email                   email or string, required
+- feedbackType            string, required
+- message                 string, required; textarea/long string
+
+Recommended feedbackType values:
+- General Feedback
+- Complaint
+- Bug Report
+- Incorrect Tool Info
+- Broken Link
+- Other
+
+New collection #2: tool-submissions
+-----------------------------------
+Collection name: Tool Submissions
+Collection ID: tool-submissions
+Purpose: Stores AI tool suggestions and directory listing requests.
+
+Columns to create:
+- fullName                string, required
+- email                   email or string, required
+- companyBrandName        string, required
+- websiteUrl              url or string, required
+- toolName                string, required
+- toolDescription         string, required; textarea/long string
+
+New collection #3: contact-messages
+-----------------------------------
+Collection name: Contact Messages
+Collection ID: contact-messages
+Purpose: Stores general/basic contact requests that do not fit ads, feedback, or tool submissions.
+
+Columns to create:
+- fullName                string, required
+- email                   email or string, required
+- subject                 string, required
+- message                 string, required; textarea/long string
+
+Fields intentionally NOT stored
+-------------------------------
+The contact form still has a consent checkbox in the UI, but it is not saved to Appwrite to keep your DB simple.
+I removed optional fields like role, start date, campaign duration, geography, creative status, media URL, heard-from source, extra notes, status, and source URL.
+
+
+Leads admin page
+----------------
+A read-only submissions inbox now exists at:
+- admin-panel/leads-admin.html
+
+After Appwrite admin sign-in, it reads these collections directly from Appwrite:
+- ad-leads
+- feedback-contacts
+- tool-submissions
+- contact-messages
+
+Admin pages now require Appwrite authentication before rendering. Email/password and Google login are both available. You can keep public read during testing, but before production you should remove public read and give read access only to the admin users/team.
+
+
+Admin auth setup notes
+----------------------
+Auth is only loaded by files inside admin-panel/ and does not affect the public site.
+Make sure your Appwrite Auth setup includes:
+- Email/password auth enabled for your admin account.
+- Google OAuth enabled if you want the "Continue with Google" button to work.
+- Your deployed admin URLs added to Appwrite allowed platforms / OAuth redirect URLs, especially:
+  - /admin-panel/index.html
+  - /admin-panel/leads-admin.html

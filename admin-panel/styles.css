@@ -13,3 +13,5 @@ input,textarea,button{border-radius:8px;border:1px solid var(--border);padding:1
 .main{height:100vh;overflow:auto;}
 
 #themeToggle,.theme-toggle{display:none!important}
+
+.secondary-btn{background:#243862!important}.admin-user-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--input);font-size:12px;font-weight:800}

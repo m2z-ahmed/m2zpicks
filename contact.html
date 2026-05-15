@@ -21,6 +21,26 @@
       margin-right: 8px;
       vertical-align: middle;
     }
+    .contact-form-section { margin-top: 32px; }
+    .contact-form-intro { max-width: 760px; margin-bottom: 20px; }
+    .eyebrow { display:inline-flex; color: var(--mint); font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+    .contact-goal-form { background: var(--bg-card); border: 1px solid var(--bd); border-radius: var(--r-xl); padding: 24px; box-shadow: 0 18px 60px rgba(0,0,0,.2); }
+    .form-grid { display: grid; gap: 14px; }
+    .form-grid.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .contact-goal-form label { display: flex; flex-direction: column; gap: 7px; color: var(--tx); font-weight: 700; }
+    .contact-goal-form input, .contact-goal-form select, .contact-goal-form textarea { width: 100%; border: 1px solid var(--bd-hi); border-radius: 12px; background: var(--bg-1); color: var(--tx); padding: 11px 12px; font: 500 14px var(--fn); outline: none; }
+    .contact-goal-form textarea { resize: vertical; min-height: 96px; }
+    .contact-goal-form input:focus, .contact-goal-form select:focus, .contact-goal-form textarea:focus { border-color: var(--bd-focus); box-shadow: 0 0 0 4px var(--vis); }
+    .goal-panel { margin: 18px 0; padding: 18px; border: 1px solid var(--bd); border-radius: var(--r-lg); background: rgba(255,255,255,.02); }
+    .goal-panel h3 { margin-bottom: 14px; }
+    .hidden { display: none !important; }
+    .consent-row { flex-direction: row !important; align-items: center; margin-top: 14px; color: var(--tx2) !important; }
+    .consent-row input { width: auto; }
+    .form-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+    .form-status { color: var(--tx2); font-weight: 700; }
+    .form-status.success { color: var(--mint); }
+    .form-status.error { color: #f87171; }
+    @media (max-width: 760px) { .form-grid.two-col { grid-template-columns: 1fr; } .contact-goal-form { padding: 18px; } }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN3L9L9LER"></script>
@@ -63,6 +83,120 @@
         <h1>Get in Touch</h1>
         <p>Have questions or suggestions? We'd love to hear from you!</p>
       </div>
+    </section>
+
+    <section class="container section contact-form-section" id="contactFormSection">
+      <div class="contact-form-intro">
+        <span class="eyebrow">Contact M2ZPicks</span>
+        <h2>Tell us what you need</h2>
+        <p id="formIntroText">Advertise your AI product to founders, builders & AI enthusiasts. Tell us about your campaign and we’ll get back within 24–48 hours.</p>
+      </div>
+
+      <form class="contact-goal-form" id="contactGoalForm">
+        <div class="form-grid two-col">
+          <label>Form goal*
+            <select name="goal" id="formGoal" required>
+              <option value="advertisement">Advertisement / Sponsorship</option>
+              <option value="feedback">Feedback / Complaint</option>
+              <option value="tool">Suggest or list a tool</option>
+              <option value="contact">Basic / Other contact</option>
+            </select>
+          </label>
+          <label>Full Name*
+            <input type="text" name="fullName" autocomplete="name" required>
+          </label>
+          <label>Email*
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label class="ad-field tool-field">Company / Brand Name*
+            <input type="text" name="companyBrandName" data-required-for="advertisement tool">
+          </label>
+          <label class="ad-field tool-field">Website URL*
+            <input type="url" name="websiteUrl" placeholder="https://example.com" data-required-for="advertisement tool">
+          </label>
+        </div>
+
+        <div class="goal-panel ad-field" data-panel="advertisement">
+          <h3>Ad details</h3>
+          <label>What would you like to promote?*
+            <textarea name="promotionDetails" rows="3" placeholder="AI coding assistant for startups" data-required-for="advertisement"></textarea>
+          </label>
+          <div class="form-grid two-col">
+            <label>Promotion type*
+              <select name="promotionType" data-required-for="advertisement">
+                <option value="">Select a promotion type</option>
+                <option>Featured Listing</option>
+                <option>Homepage Banner</option>
+                <option>Sponsored Tool Placement</option>
+                <option>Social Media Promotion</option>
+                <option>Custom Partnership</option>
+                <option>Not Sure Yet</option>
+              </select>
+            </label>
+            <label>Budget Range*
+              <select name="budgetRange" data-required-for="advertisement">
+                <option value="">Select budget</option>
+                <option>&lt;$50</option>
+                <option>$50–$100</option>
+                <option>$100–$300</option>
+                <option>$300–$1000</option>
+                <option>$1000+</option>
+              </select>
+            </label>
+          </div>
+          <label>Target audience / goal*
+            <textarea name="targetAudienceGoal" rows="3" placeholder="More signups, traffic, awareness, investors, app installs etc." data-required-for="advertisement"></textarea>
+          </label>
+        </div>
+
+        <div class="goal-panel feedback-field hidden" data-panel="feedback">
+          <h3>Feedback / complaint</h3>
+          <label>Feedback type*
+            <select name="feedbackType" data-required-for="feedback">
+              <option value="">Select type</option>
+              <option>General Feedback</option>
+              <option>Complaint</option>
+              <option>Bug Report</option>
+              <option>Incorrect Tool Info</option>
+              <option>Broken Link</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>What happened?*
+            <textarea name="feedbackMessage" rows="5" placeholder="Tell us what we should improve or fix." data-required-for="feedback"></textarea>
+          </label>
+        </div>
+
+        <div class="goal-panel tool-field hidden" data-panel="tool">
+          <h3>Tool suggestion / directory listing</h3>
+          <label>Tool Name*
+            <input type="text" name="toolName" data-required-for="tool">
+          </label>
+          <label>Why should we list it?*
+            <textarea name="toolDescription" rows="4" placeholder="Describe the tool, who it helps, pricing, and what makes it useful." data-required-for="tool"></textarea>
+          </label>
+        </div>
+
+        <div class="goal-panel contact-field hidden" data-panel="contact">
+          <h3>Basic / other contact</h3>
+          <label>Subject*
+            <input type="text" name="subject" data-required-for="contact">
+          </label>
+          <label>Message*
+            <textarea name="message" rows="5" data-required-for="contact"></textarea>
+          </label>
+        </div>
+
+        <label class="consent-row">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted regarding this request.*</span>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="contactSubmitBtn">Submit request</button>
+          <p class="form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </section>
 
     <section class="container section">
@@ -155,6 +289,144 @@
   <script src="appwrite.js"></script>
   <script src="script.js?v=20260511"></script>
     <script src="gift.js?v=20260314"></script>
+  <script>
+    (() => {
+      const form = document.getElementById('contactGoalForm');
+      if (!form) return;
+
+      const goalSelect = document.getElementById('formGoal');
+      const introText = document.getElementById('formIntroText');
+      const status = document.getElementById('contactFormStatus');
+      const submitBtn = document.getElementById('contactSubmitBtn');
+      const goalIntros = {
+        advertisement: 'Advertise your AI product to founders, builders & AI enthusiasts. Tell us about your campaign and we’ll get back within 24–48 hours.',
+        feedback: 'Send feedback, complaints, bug reports, or corrections so we can improve M2ZPicks faster.',
+        tool: 'Suggest an AI tool for the directory. Share what it does, who it helps, and why it should be listed.',
+        contact: 'For partnerships, questions, press, or anything else, send a quick message and we’ll reply as soon as possible.'
+      };
+
+      const submitters = {
+        advertisement: 'submitAdLead',
+        feedback: 'submitFeedbackContact',
+        tool: 'submitToolSubmission',
+        contact: 'submitContactMessage'
+      };
+
+      const value = (data, key) => String(data.get(key) || '').trim();
+
+      function setStatus(message, type = '') {
+        status.textContent = message;
+        status.className = `form-status ${type}`.trim();
+      }
+
+      function updateGoal() {
+        const goal = goalSelect.value;
+        const goalClass = {
+          advertisement: 'ad-field',
+          feedback: 'feedback-field',
+          tool: 'tool-field',
+          contact: 'contact-field'
+        }[goal];
+
+        introText.textContent = goalIntros[goal] || goalIntros.contact;
+        form.querySelectorAll('.ad-field, .feedback-field, .tool-field, .contact-field').forEach((fieldGroup) => {
+          fieldGroup.classList.toggle('hidden', !fieldGroup.classList.contains(goalClass));
+        });
+        form.querySelectorAll('[data-required-for]').forEach((field) => {
+          const goals = String(field.dataset.requiredFor || '').split(' ');
+          field.required = goals.includes(goal);
+        });
+      }
+
+      function buildAdLeadPayload(data) {
+        return {
+          fullName: value(data, 'fullName'),
+          workEmail: value(data, 'email'),
+          companyBrandName: value(data, 'companyBrandName'),
+          websiteUrl: value(data, 'websiteUrl'),
+          promotionDetails: value(data, 'promotionDetails'),
+          promotionType: value(data, 'promotionType'),
+          budgetRange: value(data, 'budgetRange'),
+          targetAudienceGoal: value(data, 'targetAudienceGoal')
+        };
+      }
+
+      function buildFeedbackPayload(data) {
+        return {
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          feedbackType: value(data, 'feedbackType'),
+          message: value(data, 'feedbackMessage')
+        };
+      }
+
+      function buildToolPayload(data) {
+        return {
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          companyBrandName: value(data, 'companyBrandName'),
+          websiteUrl: value(data, 'websiteUrl'),
+          toolName: value(data, 'toolName'),
+          toolDescription: value(data, 'toolDescription')
+        };
+      }
+
+      function buildContactPayload(data) {
+        return {
+          fullName: value(data, 'fullName'),
+          email: value(data, 'email'),
+          subject: value(data, 'subject'),
+          message: value(data, 'message')
+        };
+      }
+
+      const builders = {
+        advertisement: buildAdLeadPayload,
+        feedback: buildFeedbackPayload,
+        tool: buildToolPayload,
+        contact: buildContactPayload
+      };
+
+      goalSelect.addEventListener('change', updateGoal);
+      updateGoal();
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+        const goal = value(data, 'goal') || 'contact';
+        const submitterName = submitters[goal];
+        const submitter = window.AppwriteLayer?.[submitterName];
+
+        if (!submitter) {
+          setStatus('Form service is still loading. Please try again in a moment.', 'error');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting…';
+        setStatus('Saving your request…');
+
+        try {
+          await submitter(builders[goal](data));
+          form.reset();
+          updateGoal();
+          setStatus('Thanks — your request was submitted. We’ll get back within 24–48 hours.', 'success');
+        } catch (err) {
+          console.error(err);
+          const subject = encodeURIComponent(`M2ZPicks ${goal} request`);
+          const body = encodeURIComponent(`Please include your request details here.\n\nName: ${value(data, 'fullName')}\nEmail: ${value(data, 'email')}`);
+          setStatus('Could not save this request yet. Please email us directly or try again after the Appwrite collection is ready.', 'error');
+          status.innerHTML += ` <a class="contact-link" href="mailto:m2zinnovative@gmail.com?subject=${subject}&body=${body}">Email instead</a>`;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit request';
+        }
+      });
+    })();
+  </script>
+
 
   <script>(function(s){s.dataset.zone='10938386',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
