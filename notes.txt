@@ -1,0 +1,87 @@
+M2ZPicks Appwrite TODO
+======================
+
+Goal
+----
+Keep the public contact page simple. The form now only asks for useful fields and submits to one collection based on the selected goal.
+
+Important Appwrite rule
+-----------------------
+For each collection below, allow public/guest users to CREATE documents only. Do not allow public READ, UPDATE, or DELETE access.
+
+1) Existing collection: ad-leads
+--------------------------------
+Collection name: Ad Leads
+Collection ID: ad-leads
+Purpose: Advertisement and sponsorship requests.
+
+Keep these existing columns:
+- fullName                 string, required
+- workEmail                email or string, required
+- companyBrandName         string, required
+- websiteUrl               url or string, required
+- promotionDetails         string, required, long text/textarea
+- promotionType            string, required
+- targetAudienceGoal       string, required, long text/textarea
+
+Add only these useful columns:
+- budgetRange              string, required
+- consent                  boolean, required
+
+Remove/skip these older suggested ad columns for now because the simplified form no longer sends them:
+- rolePosition
+- preferredStartDate
+- campaignDuration
+- targetGeography
+- hasCreatives
+- mediaUrl
+- heardFrom
+- additionalInfo
+- sourceUrl
+- status
+
+2) New collection: feedback-contacts
+------------------------------------
+Collection name: Feedback Contacts
+Collection ID: feedback-contacts
+Purpose: Feedback, complaints, bugs, wrong info, and broken link reports.
+
+Create these columns only:
+- fullName                 string, required
+- email                    email or string, required
+- feedbackType             string, required
+- message                  string, required, long text/textarea
+- consent                  boolean, required
+
+3) New collection: tool-submissions
+-----------------------------------
+Collection name: Tool Submissions
+Collection ID: tool-submissions
+Purpose: AI tool suggestions and directory listing requests.
+
+Create these columns only:
+- fullName                 string, required
+- email                    email or string, required
+- companyBrandName         string, required
+- websiteUrl               url or string, required
+- toolName                 string, required
+- toolCategory             string, required
+- toolDescription          string, required, long text/textarea
+- consent                  boolean, required
+
+4) New collection: contact-messages
+-----------------------------------
+Collection name: Contact Messages
+Collection ID: contact-messages
+Purpose: Basic/general contact requests.
+
+Create these columns only:
+- fullName                 string, required
+- email                    email or string, required
+- subject                  string, required
+- message                  string, required, long text/textarea
+- consent                  boolean, required
+
+Current website payloads
+------------------------
+The website submits exactly the column names above. If you rename any column in Appwrite, update contact.html too.
